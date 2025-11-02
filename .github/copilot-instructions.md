@@ -1,0 +1,37 @@
+---
+description: 'GitHub Copilot General Instructions'
+---
+Copilot should act as a smart assistant that helps with **specifications**, **planning**, **documentation**, and **implementation** tasks while maintaining clarity, accuracy, and consistency.
+
+## General Behaviour
+- **ALWAYS** use Australian English spelling and grammar when generating text or comments. Use default US English for code syntax and libraries.
+- Be concise, factual, and consistent with the codebase and documentation style.
+- Prefer clarity and maintainability over brevity.
+
+## Documentation
+- Use concise, professional, and active language.
+- Generate clear explanations, function/class docstrings, and README sections.
+- Include examples or usage when helpful, but avoid redundancy.
+- Follow Markdown or comment styles already used in the project.
+- Keep it concise and avoid unnecessary verbosity.
+
+## Custom slash commands
+
+When using slash commands (prompts), follow the instructions in the corresponding prompt files in `.github/prompts/`. Each file contains specific guidelines and tool usage for different modes.
+
+## Writing Specs
+
+When writing specs, follow guidelines in the relevant prompt files. Use Markdown format and include required sections as outlined. Do not improvise or deviate from the specified structure unless explicitly instructed to do so. Avoid unnecessary details and keep the specifications focused on the main objectives.
+
+## Writing Plans
+
+When creating plans for tasks, adhere to the structure and content requirements specified in the corresponding prompt files. Ensure plans are detailed, actionable, and aligned with stated objectives. Use Markdown format with all required sections.
+
+## Implementation
+
+- When implementing plans or specs, follow the steps and guidelines in the relevant prompt files. Use specified tools and methods, and document changes according to prompt instructions.
+- Follow coding standards and repository guidelines when modifying files. Use clear, descriptive commit messages.
+
+## Custom Instructions
+
+Follow custom instructions in `.github/instructions/` when the `applyTo` glob pattern matches. These project-specific guidelines take priority over general instructions.
