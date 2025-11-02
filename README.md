@@ -1,4 +1,4 @@
-# Spec-Driven Development with GitHub Copilot
+# SpecPilot
 
 This guide explains how to use GitHub Copilot with custom instructions to implement **spec-driven development** for AI coding agents.
 
