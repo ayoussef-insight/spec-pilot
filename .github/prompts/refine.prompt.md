@@ -1,8 +1,6 @@
-# Refine Chat Mode Prompt
 ---
 description: 'Refine a specification or a plan by asking targeted questions to ensure complete understanding before implementation. The AI should focus on identifying ambiguities, missing details, and potential challenges in the provided information.'
-mode: agent
-tools: ['edit', 'search', 'new', 'runCommands', 'runTasks', 'vscodeAPI', 'problems', 'changes', 'openSimpleBrowser', 'fetch']
+tools: ['edit', 'search', 'new', 'runCommands', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'extensions']
 ---
 
 # Refine Chat Mode
