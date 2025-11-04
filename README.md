@@ -65,7 +65,7 @@ The configuration uses a centralised structure in the `.github/` directory:
 │   └── ...                        # Add your own custom instructions
 └── prompts/                       # Slash command definitions
   ├── specify.prompt.md          # /specify - Create specifications
-  ├── clarify.prompt.md          # /clarify - Refine specs or plans via targeted questions
+  ├── refine.prompt.md           # /refine - Refine specs or plans via targeted questions
   ├── plan.prompt.md             # /plan - Create implementation plans
   ├── analyse.prompt.md          # /analyse - Analyse code/systems
   └── implement.prompt.md        # /implement - Execute plans
@@ -307,7 +307,7 @@ Each phase is triggered by a slash command and produces structured output.
 
 ## Slash Commands (Prompts)
 
-Each slash command corresponds to a prompt file in `.github/prompts/`. These commands trigger specific AI modes optimised for different tasks.
+Each slash command corresponds to a prompt file in `.github/prompts/`. These commands trigger specific AI modes optimised for different tasks. The `/refine` command helps improve ambiguous specifications or plans before planning or implementation proceeds.
 
 ### `/specify` – Create Specifications
 
@@ -333,14 +333,14 @@ Each slash command corresponds to a prompt file in `.github/prompts/`. These com
 
 ---
 
-### `/clarify` – Refine Specifications or Plans
+### `/refine` – Refine Specifications or Plans
 
 **When to use**: After a draft specification or plan exists and there are uncertainties, gaps, or implicit assumptions that need surfacing before moving forward.
 
 **Example usage**:
 ```
-/clarify oauth-authentication
-/clarify fix-memory-leak
+/refine oauth-authentication
+/refine fix-memory-leak
 ```
 
 **What happens**:
@@ -350,7 +350,7 @@ Each slash command corresponds to a prompt file in `.github/prompts/`. These com
 4. Asks 3–5 targeted multiple‑choice clarification questions (only if needed)
 5. Updates or recommends updates to the specification or plan (without implementing code)
 
-**Customisation**: Edit `.github/prompts/clarify.prompt.md` to adjust clarification strategy, number/style of questions, or tool access.
+**Customisation**: Edit `.github/prompts/refine.prompt.md` to adjust refinement strategy, number/style of questions, or tool access.
 
 **Why it helps**: Reduces churn by ensuring planning and implementation are based on well‑understood, explicit requirements; mitigates hidden assumptions early.
 
