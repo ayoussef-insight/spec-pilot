@@ -64,10 +64,11 @@ The configuration uses a centralised structure in the `.github/` directory:
 │   ├── javascript.instructions.md # JavaScript/TypeScript standards
 │   └── ...                        # Add your own custom instructions
 └── prompts/                       # Slash command definitions
-    ├── specify.prompt.md          # /specify - Create specifications
-    ├── plan.prompt.md             # /plan - Create implementation plans
-    ├── analyse.prompt.md          # /analyse - Analyze code/systems
-    └── implement.prompt.md        # /implement - Execute plans
+  ├── specify.prompt.md          # /specify - Create specifications
+  ├── clarify.prompt.md          # /clarify - Refine specs or plans via targeted questions
+  ├── plan.prompt.md             # /plan - Create implementation plans
+  ├── analyse.prompt.md          # /analyse - Analyse code/systems
+  └── implement.prompt.md        # /implement - Execute plans
 ```
 
 ### Configuration Files
@@ -308,7 +309,7 @@ Each phase is triggered by a slash command and produces structured output.
 
 Each slash command corresponds to a prompt file in `.github/prompts/`. These commands trigger specific AI modes optimised for different tasks.
 
-### `/specify` - Create Specifications
+### `/specify` – Create Specifications
 
 **When to use**: Starting any new feature, bug fix, enhancement, or refactoring
 
@@ -332,7 +333,28 @@ Each slash command corresponds to a prompt file in `.github/prompts/`. These com
 
 ---
 
-### `/plan` - Create Implementation Plan
+### `/clarify` – Refine Specifications or Plans
+
+**When to use**: After a draft specification or plan exists and there are uncertainties, gaps, or implicit assumptions that need surfacing before moving forward.
+
+**Example usage**:
+```
+/clarify oauth-authentication
+/clarify fix-memory-leak
+```
+
+**What happens**:
+1. Confirms the task name
+2. Loads the relevant `specifications.md` or `plan.md`
+3. Identifies ambiguities, missing details, and potential challenges
+4. Asks 3–5 targeted multiple‑choice clarification questions (only if needed)
+5. Updates or recommends updates to the specification or plan (without implementing code)
+
+**Customisation**: Edit `.github/prompts/clarify.prompt.md` to adjust clarification strategy, number/style of questions, or tool access.
+
+**Why it helps**: Reduces churn by ensuring planning and implementation are based on well‑understood, explicit requirements; mitigates hidden assumptions early.
+
+### `/plan` – Create Implementation Plan
 
 **When to use**: After specifications are defined and approved
 
@@ -356,7 +378,7 @@ Each slash command corresponds to a prompt file in `.github/prompts/`. These com
 
 ---
 
-### `/analyse` - Analyse Code or Systems
+### `/analyse` – Analyse Code or Systems
 
 **When to use**: Understanding existing code, evaluating architecture, planning refactors
 
@@ -380,7 +402,7 @@ Each slash command corresponds to a prompt file in `.github/prompts/`. These com
 
 ---
 
-### `/implement` - Execute the Plan
+### `/implement` – Execute the Plan
 
 **When to use**: After plan is reviewed and approved, ready to code
 
