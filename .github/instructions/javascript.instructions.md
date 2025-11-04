@@ -15,3 +15,11 @@ When writing or editing JavaScript or TypeScript code, follow these guidelines t
 - Use interfaces and types to define data structures and ensure type safety.
 - Implement error handling using try-catch blocks and proper error propagation.
 - Write JSDoc comments for public functions and classes to provide clear explanations of their purpose and usage.
+
+## React-Specific Guidelines
+- Use TypeScript when working with React components to leverage type safety.
+- Use functional components and React Hooks for state management and side effects.
+- Ensure components are reusable and composable.
+- Use PropTypes or TypeScript interfaces to define component props.
+- Structure components in a way that promotes separation of concerns and maintainability.
+- Use styled-components or CSS modules for component-specific styling.
