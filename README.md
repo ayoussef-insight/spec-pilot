@@ -455,73 +455,13 @@ The framework includes instructions for common languages:
 
 **`.github/instructions/csharp.instructions.md`** - C# standards (applies to `**/*.cs, **/*.csproj, **/*.sln, **/*.razor, **/*.cshtml`)
 **`.github/instructions/javascript.instructions.md`** - JavaScript/TypeScript standards (applies to `**/*.ts, **/*.js, **/*.tsx, **/*.jsx, **/*.cshtml`)
-
-### Adding Custom Instructions
-
-Create your own instructions in `.github/instructions/` to customise for your project:
-
-**Example: Project-Specific Python Patterns**
-
-`.github/instructions/python-project.instructions.md`:
-```markdown
----
-description: Our Python project patterns
-applyTo: '**/*.py'
----
+**`.github/instructions/python.instructions.md`** - Python standards (applies to `**/*.py, **/*.pyi, **/pyproject.toml`)
 
 ## Project-Specific Guidelines
 - Use our custom logger: from utils.logging import get_logger
 - All database models must inherit from BaseModel
 - Use our validation decorators: @validate_input
 - Error handling: raise CustomException with error codes
-
-## Our Testing Patterns
-- Use fixtures from tests/fixtures/common.py
-- Mock external APIs using our MockAPI class
-- Integration tests go in tests/integration/
-```
-
-**Example: Team TypeScript Conventions**
-
-`.github/instructions/typescript-team.instructions.md`:
-```markdown
----
-description: Our TypeScript conventions
-applyTo: '**/*.ts, **/*.tsx'
----
-
-## Our Project Setup
-- Use Zod for runtime validation
-- State management: Zustand (not Redux)
-- API calls: Use our ApiClient class
-- Forms: React Hook Form with our custom hooks
-
-## Component Structure
-- One component per file
-- Props interface named {Component}Props
-- Export components as named exports
-- Co-locate styles with components
-
-## Our Patterns
-- Use custom hooks from hooks/
-- Error boundaries for all route components
-- Loading states managed by Suspense
-```
-
-### Benefits of This Approach
-
-**Centralised instructions** ensure consistency:
-- All coding standards in one location (`.github/instructions/`)
-- Language best practices applied automatically
-- New team members get good defaults
-- Easy to maintain and update guidelines
-
-**Flexible customisation** enables project needs:
-- Add project-specific conventions easily
-- Document team decisions as executable guidelines
-- Override or extend language standards when needed
-
----
 
 ## Workflow Examples
 
