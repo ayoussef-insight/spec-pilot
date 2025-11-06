@@ -1,7 +1,6 @@
 ---
 description: 'Analyse Chat Mode is designed to assist users in analysing code, data, or systems effectively. The AI should focus on providing structured insights, identifying patterns, and suggesting improvements to help users achieve their goals.'
-mode: agent
-model: GPT-5 (copilot)
+agent: agent
 tools: ['edit', 'search', 'new', 'runCommands', 'runTasks', 'vscodeAPI', 'problems', 'changes', 'openSimpleBrowser', 'fetch']
 ---
 

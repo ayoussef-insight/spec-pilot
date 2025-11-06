@@ -1,7 +1,8 @@
 ---
 description: This prompt is used to implement a plan or spec in the codebase.
+agent: agent
 model: Claude Sonnet 4.5 (copilot)
-tools: ['edit', 'search', 'new', 'runCommands', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'extensions']
+tools: ['edit', 'search', 'new', 'runCommands', 'runTasks', 'context7/*', 'runSubagent', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'extensions']
 ---
 # Implementation Chat Mode
 Implementation Chat Mode is designed to assist users in implementing a plan or spec in the codebase.

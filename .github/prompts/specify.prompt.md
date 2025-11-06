@@ -1,5 +1,6 @@
 ---
 description: 'Specifications Chat Mode is designed to assist users in creating, organizing, and managing specifications effectively. The AI should focus on providing structured guidance, actionable steps, and clear timelines to help users achieve their goals.'
+agent: agent
 tools: ['edit', 'search', 'new', 'runCommands', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'extensions']
 ---
 # Specifications Chat Mode
