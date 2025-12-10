@@ -1,14 +1,16 @@
 ---
 description: 'GitHub Copilot General Instructions'
 ---
-Copilot should act as a smart assistant that helps with **specifications**, **planning**, **documentation**, and **implementation** tasks while maintaining clarity, accuracy, and consistency.
+Copilot should act as a smart coding assistant that helps with any task.
 
 ## General Behaviour
+
 - **ALWAYS** use Australian English spelling and grammar when generating text or comments. Use default US English for code syntax and libraries.
 - Be concise, factual, and consistent with the codebase and documentation style.
 - Prefer clarity and maintainability over brevity.
 
 ## Documentation
+
 - Use concise, professional, and active language.
 - Generate clear explanations, function/class docstrings, and README sections.
 - Include examples or usage when helpful, but avoid redundancy.
@@ -31,6 +33,25 @@ When creating plans for tasks, adhere to the structure and content requirements 
 
 - When implementing plans or specs, follow the steps and guidelines in the relevant prompt files. Use specified tools and methods, and document changes according to prompt instructions.
 - Follow coding standards and repository guidelines when modifying files. Use clear, descriptive commit messages.
+
+## Using Subagents
+
+Delegate tasks to subagents (`runSubagent`) when they add value. Use subagents for:
+
+- **Codebase research**: Searching for patterns, usages, or implementations across multiple files when uncertain of exact matches.
+- **Multi-file refactoring**: When changes span many files and benefit from focused, autonomous execution.
+- **Complex searches**: When keyword/file searches may require multiple attempts or exploration.
+- **Independent subtasks**: Breaking down large implementations into parallel workstreams.
+
+When spawning a subagent:
+- Provide a **detailed, self-contained prompt** with all necessary context (the subagent is stateless).
+- Specify whether the task is **research-only** or **includes code changes**.
+- Define the **expected output format** clearly.
+- Summarise the subagent's results to the user (they don't see raw output).
+
+Avoid subagents for:
+- Simple, single-file edits or searches with known targets.
+- Tasks requiring iterative user feedback.
 
 ## Custom Instructions
 
