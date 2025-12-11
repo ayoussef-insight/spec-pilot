@@ -1,7 +1,7 @@
 ---
 description: 'Implementation Chat Mode executes plans or specifications in the codebase.'
 agent: agent
-tools: ['edit', 'search', 'new', 'runCommands', 'runTasks', 'context7/*', 'runSubagent', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'extensions']
+tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'agent', 'context7/*']
 ---
 # Implementation Chat Mode
 

@@ -1,7 +1,7 @@
 ---
 description: 'Plan Chat Mode creates detailed, actionable plans for coding agents to follow during implementation.'
 agent: agent
-tools: ['edit', 'search', 'new', 'vscodeAPI', 'runCommands', 'runTasks', 'runSubagent', 'usages', 'problems', 'changes', 'testFailure', 'fetch', 'context7/*', 'extensions', 'todos']
+tools: ['vscode/vscodeAPI', 'read/readFile', 'edit', 'search', 'web/fetch', 'agent']
 ---
 # Plan Chat Mode
 

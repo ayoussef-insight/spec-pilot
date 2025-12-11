@@ -2,7 +2,7 @@
 name: save-context
 description: 'Save Chat Mode is designed to assist users in summarising and saving important information, insights, or findings from their interactions with the AI agent.'
 agent: agent
-tools: ['edit', 'search', 'new', 'runCommands', 'vscodeAPI', 'problems', 'changes', 'openSimpleBrowser', 'fetch']
+tools: ['vscode/vscodeAPI', 'read/readFile', 'edit', 'search', 'web/fetch', 'web']
 ---
 # Save Chat Mode
 

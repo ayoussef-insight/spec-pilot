@@ -1,7 +1,7 @@
 ---
 description: 'Refine a specification or a plan by asking targeted questions to ensure complete understanding before implementation. The AI should focus on identifying ambiguities, missing details, and potential challenges in the provided information.'
 agent: agent
-tools: ['edit', 'search', 'new', 'runCommands', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'extensions']
+tools: ['vscode/vscodeAPI', 'read/readFile', 'edit', 'search', 'web/fetch', 'agent', 'context7/*']
 ---
 
 # Refine Chat Mode
