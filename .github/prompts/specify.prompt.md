@@ -1,7 +1,7 @@
 ---
 description: 'Specifications Chat Mode creates clear, actionable specifications for coding agents to use when planning.'
 agent: agent
-tools: ['edit', 'search', 'new', 'vscodeAPI', 'usages', 'problems', 'changes', 'fetch', 'extensions']
+tools: ['vscode/vscodeAPI', 'read/readFile', 'edit', 'search', 'web/fetch', 'agent']
 ---
 # Specifications Chat Mode
 
