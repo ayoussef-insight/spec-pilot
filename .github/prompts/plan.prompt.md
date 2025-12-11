@@ -15,19 +15,21 @@ Plans describe steps for the USER or another agent to execute later—not for yo
 <workflow>
 ## 1. Context Gathering (MANDATORY FIRST)
 
-Use a subagent to autonomously research the codebase:
-
 Gather **only essential context**—avoid exhaustive research. Use a targeted approach:
 
-- **Quick scan** Check if specs exist at `.tasks/{task_name}/specifications.md`
-- **Quick search** Search for existing patterns, conventions, and implementations
-- **Quick identification** Identify affected files and dependencies
-- **Quick understanding** Understand architecture relevant to the task
+- **Quick scan**: Check if specs exist at `.tasks/{task_name}/specifications.md`
+- **Quick search**: Search for existing patterns, conventions, and implementations
+- **Quick identification**: Identify affected files and dependencies
+- **Quick understanding**: Understand architecture relevant to the task
+
+Use subagents for:
+- Complex, multi-file codebase research when uncertain of exact matches
+- Searches requiring multiple attempts or exploration
 
 Avoid:
 - Searching the entire codebase for general patterns
 - Reading files unrelated to the specific task
-- Using subagents tool for simple tasks—only use for complex, multi-file research
+- Subagents for simple tasks or searches with known targets
 
 ## 2. Task Setup
 
