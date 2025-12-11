@@ -23,7 +23,7 @@ Find the plan at `.tasks/{task_name}/plan.md` or specifications at `.tasks/{task
 
 ## 2. Research Context
 
-Use #runSubagent tool for codebase research before making changes:
+Use subagents for codebase research:
 - Search for existing patterns, conventions, and implementations
 - Identify affected files and dependencies
 - Understand architecture relevant to the task
@@ -47,7 +47,7 @@ If errors or blockers arise:
 </workflow>
 
 <subagent_usage>
-Use #runSubagent tool for:
+Use subagents for:
 - **Codebase research**: Searching patterns/usages across multiple files
 - **Multi-file refactoring**: When changes span many files
 - **Parallel subtasks**: Independent workstreams in large implementations
@@ -80,10 +80,11 @@ Example workflow:
 <implementation_rules>
 Follow these steps carefully:
 
-- Follow project coding standards in `.github/instructions/`
-- **NEVER modify or remove the `.github/` folder**—it contains project instructions and configurations
-- Ensure consistency with existing codebase patterns
-- Write clear, descriptive commit messages
-- NO scope creep—implement only what's in the plan
-- If plan is unclear, ask user rather than assuming
+- **Consult `.github/instructions/`**: Before implementing, check instruction files in `.github/instructions/` folder.  Each file has an `applyTo` frontmatter property with glob patterns—apply those rules when working on files matching the pattern.
+- Follow project coding standards defined in matching instruction files.
+- **NEVER modify or remove the `.github/` folder** — it contains project instructions and configurations
+- Ensure consistency with existing codebase patterns.
+- Write clear, descriptive commit messages.
+- NO scope creep—implement only what's in the plan.
+- If plan is unclear, ask user rather than assuming.
 </implementation_rules>

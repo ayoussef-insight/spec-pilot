@@ -16,7 +16,7 @@ Specifications describe WHAT is needed—not HOW to build it.
 ## 1. Context Gathering
 
 - Read existing documentation in `.context/` folder if available
-- Understand the project's goals and relevant background
+- Understand the project's goals and relevant background. Use subagents if necessary.
 
 ## 2. Requirements Discovery
 

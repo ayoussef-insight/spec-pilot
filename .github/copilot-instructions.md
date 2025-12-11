@@ -36,7 +36,7 @@ When creating plans for tasks, adhere to the structure and content requirements 
 
 ## Using Subagents
 
-Delegate tasks to subagents (`runSubagent`) when they add value. Use subagents for:
+Delegate tasks to subagents (`#runSubagent`) when they add value. Use subagents for:
 
 - **Codebase research**: Searching for patterns, usages, or implementations across multiple files when uncertain of exact matches.
 - **Multi-file refactoring**: When changes span many files and benefit from focused, autonomous execution.
