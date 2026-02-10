@@ -8,6 +8,11 @@ Provide project context and coding guidelines that AI should follow when generat
 
 When writing or editing JavaScript or TypeScript code, follow these guidelines to ensure clarity, maintainability, and consistency with best practices:
 
+## Project Information
+- Runtime: Node.js 22 (LTS)
+- Package Manager: pnpm 10.x
+- TypeScript: 5.8.x
+
 ## General Guidelines
 - Always use pnpm as the package manager for managing dependencies.
 - Follow the official TypeScript coding conventions as outlined by Microsoft.

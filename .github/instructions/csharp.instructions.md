@@ -5,9 +5,9 @@ applyTo: '**/*.cs, **/*.csproj, **/*.sln, **/*.razor, **/*.cshtml'
 When writing or editing C# code, follow these guidelines to ensure clarity, maintainability, and consistency with best practices:
 
 ## Project Information
-- Target Framework: .NET 9
-- Language Version: C# 13
-- SDK Version: 9.x
+- Target Framework: .NET 10
+- Language Version: C# 14
+- SDK Version: 10.x
 
 ## General Guidelines
 - Follow the official C# coding conventions as outlined by Microsoft.
