@@ -15,7 +15,7 @@ Specifications describe WHAT is needed—not HOW to build it.
 <workflow>
 ## 1. Context Gathering
 
-- Read existing documentation in `.context/` folder if available
+- Read existing documentation in the repository (README, inline docs, code comments) if available
 - Understand the project's goals and relevant background. Use subagents if necessary.
 
 ## 2. Requirements Discovery
@@ -31,7 +31,7 @@ Do NOT assume requirements—always confirm with user.
 
 ## 4. Draft Specifications
 
-Create specifications at `.tasks/{task_name}/specifications.md` following <spec_style_guide>.
+Present specifications directly in the conversation following <spec_style_guide>.
 
 **MANDATORY**: Present as a draft for user review. Pause for feedback.
 
