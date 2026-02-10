@@ -17,7 +17,7 @@ Plans describe steps for the USER or another agent to execute later—not for yo
 
 Gather **only essential context**—avoid exhaustive research. Use a targeted approach:
 
-- **Quick scan**: Check if specs exist at `.tasks/{task_name}/specifications.md`
+- **Quick scan**: Check if specifications were previously shared in the conversation or exist in the repository
 - **Quick search**: Search for existing patterns, conventions, and implementations
 - **Quick identification**: Identify affected files and dependencies
 - **Quick understanding**: Understand architecture relevant to the task
@@ -34,12 +34,12 @@ Avoid:
 ## 2. Task Setup
 
 - **Task name**: Define a concise, descriptive name. **Confirm** with user before proceeding.
-- **Specifications**: Locate `.tasks/{task_name}/specifications.md` if available. **Confirm** with user or proceed without if none exists.
+- **Specifications**: Locate any previously shared specifications. **Confirm** with user or proceed without if none exists.
 
 ## 3. Draft Plan
 
 - Break down tasks: Divide the overall objective into smaller, manageable tasks or milestones. This helps in creating a clear roadmap for implementation.
-- Create plan at `.tasks/{task_name}/plan.md` following <plan_style_guide>.
+- Create plan directly in the conversation following <plan_style_guide>.
 
 ## 4. Handle Feedback
 

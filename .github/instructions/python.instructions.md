@@ -4,6 +4,13 @@ applyTo: '**/*.py, **/*.pyi, **/pyproject.toml'
 ---
 Provide project context and coding guidelines that AI should follow when generating code, answering questions, or reviewing changes.
 
+## Project Information
+- Python Version: 3.13
+- Package Manager: uv 0.6.x
+- Type Checker: mypy 1.15+
+- Linter: ruff 0.9+
+- Test Framework: pytest 8.3+
+
 # Python Instructions
 
 When writing or editing Python code, follow these guidelines to maintain clarity, reliability, and consistency across the codebase:
