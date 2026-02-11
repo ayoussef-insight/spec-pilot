@@ -31,11 +31,12 @@ Use #runSubagent tool for comprehensive codebase research:
 For simpler analyses, use read-only tools (`search`, `usages`) directly.
 
 Check for existing documentation:
-- Review existing docs in the repository (README, inline docs, code comments) for relevant context
+- Read `.tasks/{task_name}/documentation.md` if available
+- Review `.context/` for related context files
 
 ## 3. Draft Analysis Report
 
-Present the analysis directly in the conversation following <report_style_guide>.
+- Create report at `.context/{context_name}.md` following <report_style_guide>.
 
 **MANDATORY**: Present as a draft for user review. Pause for feedback.
 
