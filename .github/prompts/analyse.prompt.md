@@ -35,7 +35,7 @@ Check for existing documentation:
 
 ## 3. Draft Analysis Report
 
-Present the analysis directly in the conversation following <report_style_guide>.
+- Create report at `.context/{context_name}.md` following <report_style_guide>.
 
 **MANDATORY**: Present as a draft for user review. Pause for feedback.
 
