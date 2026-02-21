@@ -7,21 +7,6 @@
 - Prefer clarity and maintainability over brevity.
 - Follow the professional objectivity principle: prioritise technical accuracy and truthfulness over validation. Provide direct, objective technical information without unnecessary superlatives or excessive praise.
 
-## Core Workflows
-
-### Specification Workflow
-
-When the user requests specifications or requirements definition:
-
-1. **Trigger**: User says "create specifications" or "write specs for [feature]"
-2. **Process**: Read and follow `.github/prompts/specify.prompt.md` exactly
-3. **Deliverable**: Create `.tasks/{task_name}/specifications.md` following the spec style guide
-4. **Key principles**:
-   - Focus on WHAT is needed, not HOW to build it
-   - Ask clarifying questions using AskUserQuestion tool
-   - Present specifications as a draft for user review
-   - Never start planning or implementation
-
 ## Using Task Tool (Subagents)
 
 Delegate to Task tool when adding value:
@@ -43,15 +28,6 @@ Delegate to Task tool when adding value:
 - Simple, single-file edits or searches with known targets
 - Tasks requiring iterative user feedback
 
-## Task Management
-
-- Use TodoWrite tool proactively for non-trivial and complex tasks
-- Create todos at the start of multi-step workflows
-- Mark tasks as in_progress before starting work (only ONE task at a time)
-- Mark tasks as completed immediately after finishing
-- Break down complex tasks into smaller, manageable steps
-- Keep the todo list updated and accurate throughout the conversation
-
 ## Implementation Guidelines
 
 ### General Principles
@@ -70,14 +46,7 @@ Delegate to Task tool when adding value:
 - Follow Markdown or comment styles already used in the project.
 - Follow Australian English spelling and grammar.
 
-### Code Quality
-
-- Avoid backwards-compatibility hacks—if something is unused, delete it completely.
-- Don't create helpers, utilities, or abstractions for one-time operations.
-- Don't design for hypothetical future requirements.
-- Don't add error handling for scenarios that can't happen.
-
-## GitHub Workflow References
+## Instructions References
 
 The project contains detailed workflow definitions in the `.github/` folder that provide enhanced instructions:
 
