@@ -9,6 +9,7 @@ Provide project context and coding guidelines that AI should follow when generat
 When writing or editing JavaScript or TypeScript code, follow these guidelines to ensure clarity, maintainability, and consistency with best practices:
 
 ## General Guidelines
+- Always use pnpm as the package manager for managing dependencies.
 - Follow the official TypeScript coding conventions as outlined by Microsoft.
 - Use meaningful and descriptive names for variables, functions, classes, and modules.
 - Keep functions short and focused on a single task or responsibility.
