@@ -9,7 +9,10 @@ This guide explains how to use GitHub Copilot with custom instructions to implem
 - [Setting Up Your Project](#setting-up-your-project)
 - [The Workflow](#the-workflow)
 - [Slash Commands (Prompts)](#slash-commands-prompts)
+- [Agents](#agents)
 - [Language-Specific Instructions](#language-specific-instructions)
+- [MCP Servers](#mcp-servers)
+- [Multi-Agent Platform Support](#multi-agent-platform-support)
 - [Workflow Examples](#workflow-examples)
 - [Best Practices](#best-practices)
 
@@ -59,16 +62,22 @@ The configuration uses a centralised structure in the `.github/` directory:
 ```
 .github/
 ├── copilot-instructions.md       # Main Copilot behaviour configuration
+├── agents/                        # Agent definitions (Copilot Chat agents)
+│   ├── architect.agent.md        # Lead Architect (user-invokable)
+│   ├── auditor.agent.md          # Logic Auditor (subagent)
+│   ├── scout.agent.md            # Context Scout (subagent)
+│   └── writer.agent.md           # Technical Writer (subagent)
 ├── instructions/                  # Language and project guidelines
 │   ├── csharp.instructions.md    # C# coding standards
 │   ├── javascript.instructions.md # JavaScript/TypeScript standards
 │   └── ...                        # Add your own custom instructions
 └── prompts/                       # Slash command definitions
-  ├── specify.prompt.md          # /specify - Create specifications
-  ├── refine.prompt.md           # /refine - Refine specs or plans via targeted questions
-  ├── plan.prompt.md             # /plan - Create implementation plans
-  ├── analyse.prompt.md          # /analyse - Analyse code/systems
-  └── implement.prompt.md        # /implement - Execute plans
+    ├── specify.prompt.md          # /specify - Create specifications
+    ├── refine.prompt.md           # /refine - Refine specs or plans via targeted questions
+    ├── plan.prompt.md             # /plan - Create implementation plans
+    ├── analyse.prompt.md          # /analyse - Analyse code/systems
+    ├── implement.prompt.md        # /implement - Execute plans
+    └── save.prompt.md             # /save - Save conversation context
 ```
 
 ### Configuration Files
@@ -91,6 +100,14 @@ Contains language-specific and project-specific coding guidelines:
 - Project-specific guidelines
 
 All custom instructions for your project should be added as new files in this folder, using YAML frontmatter with `applyTo` glob patterns to specify when they should be applied.
+
+#### `.github/agents/` folder
+
+Contains agent definitions for Copilot Chat's agent mode:
+- Each agent has a dedicated role, tools, and behavioural instructions
+- Agents can delegate to other agents (subagents)
+- User-invokable agents can be triggered directly via `@AgentName`
+- See [Agents](#agents) for details
 
 #### `.github/prompts/` folder
 
@@ -426,6 +443,83 @@ Each slash command corresponds to a prompt file in `.github/prompts/`. These com
 
 ---
 
+### `/save` – Save Conversation Context
+
+**When to use**: After a productive conversation where you want to preserve key findings, decisions, or insights for future reference
+
+**Example usage**:
+```
+/save authentication-decisions
+/save debugging-session-findings
+```
+
+**What happens**:
+1. Reviews the conversation history
+2. Confirms context name with the user
+3. Summarises key information, insights, and findings
+4. Saves a structured Markdown summary to `.context/{context_name}.md`
+
+**Customisation**: Edit `.github/prompts/save.prompt.md` to:
+- Change summary format
+- Add custom sections
+- Modify extraction criteria
+
+---
+
+## Agents
+
+The framework includes a multi-agent system in `.github/agents/` that enables specialised AI roles to collaborate on complex tasks. Agents differ from slash commands: while slash commands trigger specific workflows, agents are autonomous roles that can delegate to one another.
+
+### How Agents Work
+
+- **User-invokable agents** can be triggered directly in Copilot Chat (e.g. `@Architect`)
+- **Subagents** are called by other agents and cannot be invoked directly
+- Each agent definition specifies its role, tools, model, and behavioural instructions
+
+### Available Agents
+
+#### `@Architect` – Lead Architect (user-invokable)
+
+Orchestrates the full lifecycle of a feature request — from research through to documented design.
+
+**Workflow**:
+1. **Confirm scope** — asks whether to scout the repo and which folders to search
+2. **Research** — delegates to `Scout` to find relevant code and dependencies
+3. **Design** — creates a technical solution based on findings
+4. **Audit** — delegates to `Auditor` to review the design
+5. **Document** — delegates to `Writer` to produce documentation
+6. **Finalise** — presents the complete package for approval
+
+#### `Scout` – Context Scout (subagent)
+
+Traces code flows, identifies dependencies, and maps relevant files for a given feature or change. Respects scoping constraints (`includePaths` / `excludeGlobs`) and provides evidence-backed findings with code snippets.
+
+#### `Auditor` – Logic Auditor (subagent)
+
+Reviews designs, plans, and code proposals for:
+- Correctness and assumption verification
+- Edge cases (empty inputs, large datasets, concurrency)
+- Error handling and security concerns
+- Adherence to best practices and existing patterns
+
+Provides a structured verdict with actionable feedback.
+
+#### `Writer` – Technical Writer (subagent)
+
+Translates technical designs into clear documentation: README updates, API specs, tutorials, and inline documentation. Follows the project's existing documentation conventions and Australian English spelling.
+
+### Customising Agents
+
+Edit the agent files in `.github/agents/` to:
+- Change agent roles or instructions
+- Add new specialist agents
+- Modify delegation chains
+- Adjust model preferences
+
+> **Note**: Agents require VS Code settings `chat.customAgentInSubagent.enabled` and `chat.useAgentSkills` to be enabled. These are pre-configured in `.vscode/settings.json`.
+
+---
+
 ## Language-Specific Instructions
 
 The framework includes language-specific and project-specific guidelines in `.github/instructions/`.
@@ -457,11 +551,53 @@ The framework includes instructions for common languages:
 **`.github/instructions/javascript.instructions.md`** - JavaScript/TypeScript standards (applies to `**/*.ts, **/*.js, **/*.tsx, **/*.jsx, **/*.cshtml`)
 **`.github/instructions/python.instructions.md`** - Python standards (applies to `**/*.py, **/*.pyi, **/pyproject.toml`)
 
-## Project-Specific Guidelines
-- Use our custom logger: from utils.logging import get_logger
-- All database models must inherit from BaseModel
-- Use our validation decorators: @validate_input
-- Error handling: raise CustomException with error codes
+---
+
+## MCP Servers
+
+The framework includes pre-configured [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers that extend AI capabilities. These are defined in `.vscode/mcp.json` (for VS Code / Copilot) and `.claude/mcp.json` (for Claude Code).
+
+### Included Servers
+
+| Server | Purpose |
+|---|---|
+| **sequential-thinking** | Provides dynamic, iterative problem-solving for complex architectural and design decisions |
+| **context7** | Retrieves up-to-date library documentation and code examples |
+| **package-version** | Checks package versions across npm, PyPI, Docker Hub, and GitHub Actions |
+| **browsermcp** | Browser automation for testing and interacting with web applications (VS Code only) |
+
+### Setup
+
+Some MCP servers require API keys. Copy `.env.example` to `.env` and fill in the required values:
+
+```bash
+cp .env.example .env
+```
+
+MCP servers require **Node.js** and `npx` to be installed, as they are launched via `npx` commands.
+
+### Customisation
+
+Add or remove MCP servers by editing:
+- `.vscode/mcp.json` — for VS Code / GitHub Copilot
+- `.claude/mcp.json` — for Claude Code
+
+---
+
+## Multi-Agent Platform Support
+
+While the core workflow is designed for **GitHub Copilot** in VS Code, the framework includes compatibility files for other AI coding platforms:
+
+| File | Platform | Purpose |
+|---|---|---|
+| `.github/copilot-instructions.md` | GitHub Copilot | Main behaviour configuration |
+| `AGENTS.md` | Claude Code / OpenAI Codex | Project instructions and guidelines |
+| `CLAUDE.md` | Claude Code | References `AGENTS.md` for shared configuration |
+| `.claude/mcp.json` | Claude Code | MCP server configuration |
+
+These files share the same core guidelines (Australian English, spec-driven workflow, implementation principles) to ensure consistent AI behaviour regardless of platform. If you only use Copilot, the root-level `AGENTS.md` and `CLAUDE.md` files can be safely removed.
+
+---
 
 ## Workflow Examples
 
@@ -676,10 +812,15 @@ When both match a file, all matching instructions are applied together.
 
 ### Getting Started
 
-1. Get the SDD framework files and copy `.github/` structure to your repository
-2. Review and customise the existing instruction files in `.github/instructions/`
-3. Add new instruction files in `.github/instructions/` for your project-specific guidelines
-4. Ensure instruction files have proper `applyTo` glob patterns that match your file structure
-5. Start with a small feature using `/specify`
-6. Iterate and improve your instructions based on experience
+1. **Clone or copy** the SpecPilot framework files into your repository:
+   - `.github/` — instructions, prompts, and agents
+   - `.vscode/` — MCP server configuration and VS Code settings
+   - Optionally: `AGENTS.md`, `CLAUDE.md`, `.claude/` for multi-platform support
+2. **Install prerequisites**: Ensure [Node.js](https://nodejs.org/) (with `npx`) is installed — required for MCP servers
+3. **Configure environment**: Copy `.env.example` to `.env` and fill in any required API keys
+4. **Review and customise** the existing instruction files in `.github/instructions/`
+5. **Add new instruction files** in `.github/instructions/` for your project-specific guidelines, using YAML frontmatter with `applyTo` glob patterns
+6. **Verify VS Code settings**: Ensure `.vscode/settings.json` is present with agent-related settings enabled
+7. **Start with a small feature** using `/specify` to test the workflow
+8. **Iterate and improve** your instructions, prompts, and agents based on experience
 

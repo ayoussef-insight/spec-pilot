@@ -1,16 +1,12 @@
 {
-  "servers": {
-    "browsermcp": {
+  "mcpServers": {
+    "package-version": {
       "command": "npx",
-      "args": ["@browsermcp/mcp@latest"]
+      "args": ["-y", "mcp-package-version"]
     },
     "context7": {
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp"]
-    },
-    "package-version": {
-      "command": "npx",
-      "args": ["-y", "mcp-package-version"]
     },
     "sequential-thinking": {
       "command": "npx",
