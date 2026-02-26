@@ -1,7 +1,7 @@
 ---
 description: 'Plan Chat Mode creates detailed, actionable plans for coding agents to follow during implementation.'
 agent: agent
-tools: ['vscode/vscodeAPI', 'read/readFile', 'edit', 'search', 'web/fetch', 'agent']
+tools: ['vscode/vscodeAPI', 'read/readFile', 'edit', 'search', 'web/fetch', 'agent', 'sequential-thinking/*', 'package-version/*', 'context7/*']
 ---
 # Plan Chat Mode
 
@@ -13,23 +13,29 @@ Plans describe steps for the USER or another agent to execute later—not for yo
 </stopping_rules>
 
 <workflow>
+
 ## 1. Context Gathering (MANDATORY FIRST)
 
-Gather **only essential context**—avoid exhaustive research. Use a targeted approach:
+**Delegate this step to a subagent.** Provide the subagent with the user's task description and instruct it to perform the following targeted research, returning a consolidated summary:
 
 - **Quick scan**: Check if specs exist at `.tasks/{task_name}/specifications.md`
+- **Context**: Read relevant documentation in `.context/` folder if available
 - **Quick search**: Search for existing patterns, conventions, and implementations
 - **Quick identification**: Identify affected files and dependencies
 - **Quick understanding**: Understand architecture relevant to the task
 
-Use subagents for:
-- Complex, multi-file codebase research when uncertain of exact matches
-- Searches requiring multiple attempts or exploration
+The subagent should return:
+- Relevant specs and documentation found
+- Work item details (if applicable)
+- Existing patterns and conventions discovered
+- List of affected files and dependencies
+- Architectural context relevant to the task
+
+For complex or uncertain tasks, use `sequential-thinking` to break down the problem space before delegating research to the subagent.
 
 Avoid:
 - Searching the entire codebase for general patterns
 - Reading files unrelated to the specific task
-- Subagents for simple tasks or searches with known targets
 
 ## 2. Task Setup
 
@@ -71,3 +77,26 @@ Rules:
 - NO manual testing sections unless explicitly requested
 - Write ONLY the plan, without preamble or postamble
 </plan_style_guide>
+
+<sequential_thinking>
+## Using Sequential Thinking for Complex Problems
+
+The `sequential-thinking` MCP provides dynamic reflection and iterative problem-solving capabilities.
+
+**When to use:**
+- Breaking down complex architectural or design decisions
+- Multi-step problems where the full solution scope is unclear initially
+- Tasks requiring hypothesis generation and verification
+- Situations where previous decisions may need revision as understanding deepens
+- Planning work with significant uncertainty or multiple viable approaches
+
+**When NOT to use:**
+- Straightforward tasks with clear solutions
+- Routine searches or data retrieval
+
+**How to use:**
+- Invoke the tool when starting work on complex problems
+- Use the thought chains to explore multiple approaches
+- Mark revisions when reconsidering previous decisions
+- Generate hypotheses and verify against your understanding
+</sequential_thinking>

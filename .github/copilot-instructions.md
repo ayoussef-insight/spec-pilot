@@ -55,26 +55,22 @@ When using slash commands (prompts), follow the instructions in the correspondin
 
 Follow custom instructions in `.github/instructions/` when the `applyTo` glob pattern matches. These project-specific guidelines take priority over general instructions.
 
-### Using Sequential Thinking for Complex Problem-Solving
+## Packages and Third-party Tools
 
-The `sequential-thinking` MCP provides dynamic reflection and iterative problem-solving capabilities.
+### Using Context7 for Third-party Documentation
+
+The `context7` MCP server provides access to up-to-date documentation and code examples for third-party libraries and frameworks.
 
 **When to use:**
-- If the MCP tool is available.
-- Breaking down complex architectural or design decisions
-- Multi-step problems where the full solution scope is unclear initially
-- Tasks requiring hypothesis generation and verification
-- Situations where previous decisions may need revision as understanding deepens
-- Planning work with significant uncertainty or multiple viable approaches
-
-**When NOT to use:**
-- Straightforward, single-step tasks with clear solutions
-- Simple code edits or file operations
-- Routine searches or data retrieval tasks
-- Time-sensitive work where direct answers are needed without iteration
+- Retrieving official documentation for libraries, frameworks, or tools
+- Finding code examples and best practices
+- Checking for specific API usage patterns or recent changes
+- Verifying library-specific conventions or configurations
 
 **How to use:**
-- Invoke the tool when starting work on complex problems
-- Use the thought chains to explore multiple approaches
-- Mark revisions when reconsidering previous decisions
-- Generate hypotheses and verify against your understanding
+1. Use the `resolve-library-id` tool first to identify the correct library ID (format: `/org/project` or `/org/project/version`)
+2. Use `query-docs` tool to retrieve documentation with specific queries
+3. Include the resolved library ID and a detailed, specific query
+4. Prioritise libraries with high reputation scores and comprehensive code snippet coverage
+
+**Note:** Do not call either tool more than 3 times per question. If information cannot be found after 3 attempts, use the best result obtained.
